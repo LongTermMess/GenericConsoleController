@@ -1,0 +1,42 @@
+{
+  "ModId": "DebugConsole",
+  "ModName": "DebugConsole",
+  "ModAuthor": "Me",
+  "ModVersion": "1.0.0",
+  "ModDescription": "Description",
+  "ModDll": "DebugConsole.dll",
+  "ModIcon": "Preview.png",
+  "ModR2RManagedDll32": "x86/DebugConsole.dll",
+  "ModR2RManagedDll64": "x64/DebugConsole.dll",
+  "ModNativeDll32": "",
+  "ModNativeDll64": "",
+  "Tags": [],
+  "CanUnload": null,
+  "HasExports": null,
+  "IsLibrary": true,
+  "ReleaseMetadataFileName": "p5rDebugConsole.ReleaseMetadata.json",
+  "PluginData": {
+    "GitHubDependencies": {
+      "IdToConfigMap": {
+        "reloaded.sharedlib.hooks": {
+          "Config": {
+            "UserName": "Sewer56",
+            "RepositoryName": "Reloaded.SharedLib.Hooks.ReloadedII",
+            "UseReleaseTag": true,
+            "AssetFileName": "reloaded.sharedlib.hooks.zip"
+          },
+          "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
+        }
+      }
+    }
+  },
+  "IsUniversalMod": true,
+  "ModDependencies": [
+    "reloaded.sharedlib.hooks"
+  ],
+  "OptionalDependencies": [],
+  "SupportedAppId": [
+    "p5r.exe"
+  ],
+  "ProjectUrl": ""
+}
