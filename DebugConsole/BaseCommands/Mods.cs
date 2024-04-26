@@ -8,15 +8,16 @@ using Reloaded.Mod.Interfaces;
 
 namespace DebugConsole.BaseCommands
 {
-    internal class ReloadedCommands
+    internal class ModCommands
     {
         private ConsoleController DebugConsole;
         private IModLoader _modLoader;
 
         public Command ListModsCommand;
+        public Command ListAddonsCommand;
 
 
-        public ReloadedCommands(IModLoader modLoader, ConsoleController console) 
+        public ModCommands(IModLoader modLoader, ConsoleController console) 
         {
             _modLoader = modLoader;
             DebugConsole = console;
@@ -41,6 +42,21 @@ namespace DebugConsole.BaseCommands
                 Catagory = "Default Commands"
             };
 
+            void ListAddons()
+            {
+                for (int i = 0; i < DebugConsole.Addons.Count(); i++)
+                {
+                    DebugConsole.WriteLine(DebugConsole.Addons[i].Name + " | By " + DebugConsole.Addons[i].Author, "ConsoleController");
+                }
+            }
+            ListAddonsCommand = new Command()
+            {
+                Name = "ListAddons",
+                Description = "Prints all registered addons.",
+                Arguments = 0,
+                CommandAction = ListAddons,
+                Catagory = "Default Commands"
+            };
 
         }
         

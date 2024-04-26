@@ -11,10 +11,13 @@ namespace p5rDebugConsole.Configuration
         [DefaultValue(false)]
         public bool ShowHiddenHelp { get; set; } = false;
 
-        [DisplayName("Echo reloaded console")]
+        [DisplayName("Debug console echos reloaded console")]
         [DefaultValue(false)]
-        public bool ReloadedConsole { get; set; } = false;
+        public bool EchoReloaded { get; set; } = false;
 
+        [DisplayName("Reloaded console echos debug console")]
+        [DefaultValue(false)]
+        public bool EchoDebug { get; set; } = false;
     }
 
     /// <summary>

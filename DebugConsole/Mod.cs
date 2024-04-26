@@ -36,6 +36,7 @@ namespace p5rDebugConsole
         private readonly IModConfig _modConfig;
 
         public ConsoleController DebugConsole;
+        HelpCommands _helpCommands;
 
         public Mod(ModContext context)
         {
@@ -49,11 +50,12 @@ namespace p5rDebugConsole
             _logger.OnWriteLine += _logger_OnWriteLine;
 
             DebugConsole = new ConsoleController();
-            
+            DebugConsole.EchoToReloaded = _configuration.EchoDebug;
+            DebugConsole.OnMessageWritten += _logger.WriteLine;
 
             ProgramCommands _programCommands = new ProgramCommands(DebugConsole);
-            HelpCommands _helpCommands = new HelpCommands(DebugConsole, _configuration);
-            ReloadedCommands _reloadedCommands = new ReloadedCommands(_modLoader, DebugConsole);
+            _helpCommands = new HelpCommands(DebugConsole); _helpCommands.HelpShowHidden = _configuration.ShowHiddenHelp;
+            ModCommands _reloadedCommands = new ModCommands(_modLoader, DebugConsole);
 
             List<Object> BaseCommands = new List<Object>
             {
@@ -66,6 +68,7 @@ namespace p5rDebugConsole
                 _helpCommands.HelpCommandWithFind,
                 _helpCommands.HelpCommandWithTwoFinds,
                 _reloadedCommands.ListModsCommand,
+                _reloadedCommands.ListAddonsCommand,
             };
 
             ConsoleAddon BaseAddon = new ConsoleAddon()
@@ -82,7 +85,7 @@ namespace p5rDebugConsole
 
         private void _logger_OnWriteLine(object? sender, (string text, Color color) e)
         {
-            if (_configuration.ReloadedConsole) { DebugConsole.WriteLine(e.text, "Reloaded"); }
+            if (_configuration.EchoReloaded && !e.text.StartsWith("[DebugConsole]")) { DebugConsole.WriteLine(e.text, "Reloaded"); }
         }
 
      
@@ -113,8 +116,9 @@ namespace p5rDebugConsole
         #region Standard Overrides
         public override void ConfigurationUpdated(Config configuration)
         {
-            // Apply settings from configuration.
-            // ... your code here.
+            _helpCommands.HelpShowHidden = _configuration.ShowHiddenHelp;
+            DebugConsole.EchoToReloaded = _configuration.EchoDebug;
+
             _configuration = configuration;
             _logger.WriteLine($"[{_modConfig.ModId}] Config Updated: Applying");
         }

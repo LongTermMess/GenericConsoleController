@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -17,7 +19,8 @@ namespace DebugConsole.Interfaces
 
         public List<ConsoleMessage> Messages { get; set; } = new List<ConsoleMessage>();
         public string Input { get; set; } = "";
-    
+        public string CommandPrefix { get; set; } = "";
+        public bool EchoToReloaded { get; set; } = false;
         public ConsoleController()
         {
 
@@ -26,7 +29,10 @@ namespace DebugConsole.Interfaces
         public void WriteLine(string message, string sender)
         {
             Messages.Add(new ConsoleMessage(message, sender));
+            if (EchoToReloaded && sender != "Reloaded") { OnMessageWritten.Invoke("[DebugConsole] " + message); }
         }
+        public event MessageWriteEvent OnMessageWritten;
+        public delegate void MessageWriteEvent(string Message);
 
         public void ClearMessages()
         {
@@ -53,7 +59,15 @@ namespace DebugConsole.Interfaces
 
         public void ReceiveCommand(string Input, string Sender, bool EchoPrint = true)
         {
-            
+            if(CommandPrefix != "")
+            {
+                if(!Input.StartsWith(CommandPrefix)) { if (EchoPrint) { WriteLine(Input, Sender); return; } }
+                else
+                {
+                    Input = Input.Substring(CommandPrefix.Length);
+
+                }
+            }
 
             if (EchoPrint){ WriteLine(Input, Sender);}
 

@@ -12,22 +12,21 @@ namespace DebugConsole.BaseCommands
     internal class HelpCommands
     {
         ConsoleController DebugConsole;
-        Config _configuration;
+        public bool HelpShowHidden { get; set; } = false;
 
         public Command HelpCommand;
         public Command<string> HelpCommandWithFind;
         public Command<string, string> HelpCommandWithTwoFinds;
-        public HelpCommands(ConsoleController console, Config config)
+        public HelpCommands(ConsoleController console)
         {
             DebugConsole = console;
-            _configuration = config;
 
             void ListCommands()
             {
                 for (int i = 0; i < DebugConsole.Commands.Count(); i++)
                 {
                     CommandBase Command = DebugConsole.Commands[i] as CommandBase;
-                    if (Command.HideFromHelp && !_configuration.ShowHiddenHelp) { continue; }
+                    if (Command.HideFromHelp && !HelpShowHidden) { continue; }
 
                     HelpPrint(Command);
                 }
@@ -38,7 +37,7 @@ namespace DebugConsole.BaseCommands
                 for (int i = 0; i < DebugConsole.Commands.Count(); i++)
                 {
                     CommandBase Command = DebugConsole.Commands[i] as CommandBase;
-                    if (Command.HideFromHelp && !_configuration.ShowHiddenHelp) { continue; }
+                    if (Command.HideFromHelp && !HelpShowHidden) { continue; }
 
                     string TempFind = Find;
 
@@ -63,7 +62,7 @@ namespace DebugConsole.BaseCommands
                 for (int i = 0; i < DebugConsole.Commands.Count(); i++)
                 {
                     CommandBase Command = DebugConsole.Commands[i] as CommandBase;
-                    if (Command.HideFromHelp && !_configuration.ShowHiddenHelp) { continue; }
+                    if (Command.HideFromHelp && !HelpShowHidden) { continue; }
 
                     string SearchCatagory = Catagory.Substring(1);
 
