@@ -44,8 +44,6 @@
 
   <ItemGroup>
     <PackageReference Include="Reloaded.Hooks.Definitions" Version="1.15.0" />
-    <PackageReference Include="Reloaded.Imgui.Hook" Version="4.0.1" />
-    <PackageReference Include="Reloaded.Imgui.Hook.Direct3D11" Version="1.0.1" />
     <PackageReference Include="Reloaded.Memory" Version="9.4.1" />
     <PackageReference Include="Reloaded.Memory.Buffers" Version="3.0.6" />
     <PackageReference Include="Reloaded.Mod.Interfaces" Version="2.4.0" ExcludeAssets="runtime" />

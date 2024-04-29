@@ -4,7 +4,6 @@ using Reloaded.Hooks.Definitions.X64;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
 using System.Runtime.InteropServices;
-using DearImguiSharp;
 using Reloaded.Memory.Pointers;
 using Reloaded.Memory;
 using Reloaded.Memory.Utilities;
@@ -13,9 +12,7 @@ using System.Net.Sockets;
 using DebugConsole.Interfaces;
 using static p5rDebugConsole.Mod;
 using System.Xml;
-using Microsoft.VisualBasic.Devices;
 using System.Windows.Input;
-using System.Windows.Forms;
 using DebugConsole.BaseCommands;
 using System.Drawing;
 

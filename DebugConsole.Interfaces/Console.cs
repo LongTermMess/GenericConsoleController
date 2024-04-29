@@ -104,9 +104,19 @@ namespace DebugConsole.Interfaces
                         (Commands[i] as Command<string>).Invoke(Args[0]);
                         return;
                     }
+                    else if (Commands[i] as Command<long> != null)
+                    {
+                        (Commands[i] as Command<long>).Invoke(Convert.ToInt64(Args[0]));
+                        return;
+                    }
                     else if (Commands[i] as Command<int, string> != null)
                     {
                         (Commands[i] as Command<int, string>).Invoke((int)Convert.ToInt32(Args[0]), Args[1]);
+                        return;
+                    }
+                    else if (Commands[i] as Command<string, int> != null)
+                    {
+                        (Commands[i] as Command<string, int>).Invoke(Args[0], (int)Convert.ToInt32(Args[1]));
                         return;
                     }
                     else if (Commands[i] as Command<int, int> != null)
@@ -127,6 +137,11 @@ namespace DebugConsole.Interfaces
                     else if (Commands[i] as Command<nuint, string> != null)
                     {
                         (Commands[i] as Command<nuint, string>).Invoke((nuint)Convert.ToInt64(Args[0], 16), Args[1]);
+                        return;
+                    }
+                    else if (Commands[i] as Command<string, nuint> != null)
+                    {
+                        (Commands[i] as Command<string, nuint>).Invoke(Args[0], (nuint)Convert.ToInt64(Args[1], 16));
                         return;
                     }
                     else if (Commands[i] as Command<nuint, string, long> != null)

@@ -1,9 +1,9 @@
 {
   "ModId": "DebugConsole",
-  "ModName": "DebugConsole",
-  "ModAuthor": "Me",
+  "ModName": "Debug Console Controller",
+  "ModAuthor": "Cornflakes",
   "ModVersion": "1.0.0",
-  "ModDescription": "Description",
+  "ModDescription": "A simple game non-specific controller for a console",
   "ModDll": "DebugConsole.dll",
   "ModIcon": "Preview.png",
   "ModR2RManagedDll32": "x86/DebugConsole.dll",
@@ -28,6 +28,12 @@
           "ReleaseMetadataName": "Sewer56.Update.ReleaseMetadata.json"
         }
       }
+    },
+    "NuGet": {
+      "AllowUpdateFromAnyRepository": false,
+      "DefaultRepositoryUrls": [
+        "http://packages.sewer56.moe:5000/v3/index.json"
+      ]
     }
   },
   "IsUniversalMod": true,
@@ -35,8 +41,6 @@
     "reloaded.sharedlib.hooks"
   ],
   "OptionalDependencies": [],
-  "SupportedAppId": [
-    "p5r.exe"
-  ],
+  "SupportedAppId": [],
   "ProjectUrl": ""
 }
